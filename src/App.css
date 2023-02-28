@@ -36,3 +36,67 @@
     transform: rotate(360deg);
   }
 }
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+.tagline{
+  font-size: 15px;
+}
+.tagline-button{
+  text-decoration: none;
+}
+.tagline-button:hover{
+  text-decoration: underline;
+}
+
+/*Navbar*/
+.brand{
+  font-weight: 500;
+  font-size: 35px;
+}
+.isi-nav{
+  font-size: 18px;
+}
+.isi{
+  transition: 0.2s;
+  margin: 0px 1px;
+  border-bottom: 3px solid transparent;
+}
+.isi:hover{
+  border-bottom: 3px solid;
+}
+
+/*Carousel*/
+.carousel-img{
+  height: 70vh;
+  opacity: 0.9;
+}
+
+.sampul-profil{
+}
+.profil{
+  margin-top: -80px;
+  height: 170px;
+  width: auto;
+}
+
+.cari{
+  transition: 0.2s;
+}
+.cari:hover{
+  font-size: 20px;
+  border-left: 3px solid;
+  border-radius: 0px;
+}
+
+.sideActive{
+  font-size: 20px;
+  border-left: 3px solid;
+  border-radius: 0px;
+}
+
+.pdf-view{
+  height: 500px;
+}
