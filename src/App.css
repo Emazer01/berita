@@ -36,11 +36,15 @@
     transform: rotate(360deg);
   }
 }
-
-*{
+h1,h2,h5{
+  font-family: 'IBM Plex Serif', serif;
+}
+p, button, span{
   font-family: 'Poppins', sans-serif;
 }
-
+.bg-f5{
+  background-color: #f1f1f1;
+}
 .tagline{
   font-size: 15px;
 }
@@ -53,29 +57,47 @@
 
 /*Navbar*/
 .brand{
+  margin: 10px 0px 5px 0px;
+  height: 30px;
   font-weight: 500;
   font-size: 35px;
 }
 .isi-nav{
-  font-size: 18px;
+  font-size: 15px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 .isi{
   transition: 0.2s;
-  margin: 0px 1px;
-  border-bottom: 3px solid transparent;
+  margin: 0px 15px;
+  border-bottom: 2px solid transparent;
 }
 .isi:hover{
-  border-bottom: 3px solid;
+  border-bottom: 2px solid;
+}
+
+.h-55-vh{
+  height: 55vh;
 }
 
 /*Carousel*/
-.carousel-img{
+.carousel-item{
   height: 70vh;
-  opacity: 0.9;
 }
 
-.sampul-profil{
+.bg-biru{
+  background-color: #0E1E32;
 }
+.btn-biru{
+  color: white;
+  background-color: #0E1E32;
+  border: 2px solid #0E1E32
+}
+.btn-biru:hover{
+  background-color: white;
+  color: #0E1E32;
+  border: 2px solid #0E1E32
+}
+
 .profil{
   margin-top: -80px;
   height: 170px;

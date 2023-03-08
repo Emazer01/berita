@@ -1,0 +1,66 @@
+<div className="col-12 col-md-6 col-lg-4">
+                    <div className="mx-md-3 me-md-3 mx-lg-5 me-lg-5">
+                        <h5 className="border-bottom border-2 border-dark py-3">Berita Terkini</h5>
+                        <img src={berita} className="w-100 my-3" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At ultrices mi tempus imperdiet. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Mauris ultrices eros in cursus turpis massa. Mauris sit amet massa vitae tortor condimentum lacinia quis.</p>
+                        <a href="#" className="text-dark text-decoration-none cari">
+                            <strong className="me-2">Cari</strong>
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                    <br />
+                    <div className="mx-md-3 me-md-3 mx-lg-5 me-lg-5">
+                        <h5 className="border-bottom border-2 border-dark py-3">Gaya Hidup</h5>
+                        <img src={gaya} className="w-100 my-3" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At ultrices mi tempus imperdiet. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Mauris ultrices eros in cursus turpis massa. Mauris sit amet massa vitae tortor condimentum lacinia quis. Eu facilisis sed odio morbi quis commodo odio. Sed turpis tincidunt id aliquet. Scelerisque felis imperdiet proin fermentum leo. Sed sed risus pretium quam vulputate. Posuere urna nec tincidunt praesent semper.</p>
+                        <a href="#" className="text-dark text-decoration-none cari">
+                            <strong className="me-2">Cari</strong>
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                    <br />
+                </div>
+                <div className="col-12 col-md-6 col-lg-5 border-start border-2 border-dark">
+                    <div className="mx-md-3 me-md-3 mx-lg-5 me-lg-5">
+                        <h5 className="border-bottom border-2 border-dark py-3">Event</h5>
+                        <img src={event} className="w-100 my-3" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At ultrices mi tempus imperdiet. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Mauris ultrices eros in cursus turpis massa. Mauris sit amet massa vitae tortor condimentum lacinia quis. Eu facilisis sed odio morbi quis commodo odio. Sed turpis tincidunt id aliquet. Scelerisque felis imperdiet proin fermentum leo. Sed sed risus pretium quam vulputate. Posuere urna nec tincidunt praesent semper.
+
+                            Sed turpis tincidunt id aliquet risus feugiat in ante. Sed arcu non odio euismod lacinia at quis. Arcu non odio euismod lacinia at quis risus sed vulputate. Ac felis donec et odio pellentesque diam volutpat commodo. In eu mi bibendum neque egestas congue quisque egestas diam. Vitae auctor eu augue ut lectus. Tristique senectus et netus et malesuada fames. Tincidunt tortor aliquam nulla facilisi cras fermentum odio. Turpis in eu mi bibendum neque egestas congue quisque. Et leo duis ut diam quam nulla porttitor.</p>
+                        <a href="#" className="text-dark text-decoration-none cari">
+                            <strong className="me-2">Cari</strong>
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                    <br/>
+                    <div className="mx-md-3 me-md-3 mx-lg-5 me-lg-5">
+                        <h5 className="border-bottom border-2 border-dark py-3">Sains</h5>
+                        <img src={sains} className="w-100 my-3" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At ultrices mi tempus imperdiet. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Mauris ultrices eros in cursus turpis massa. Mauris sit amet massa vitae tortor condimentum lacinia quis.</p>
+                        <a href="#" className="text-dark text-decoration-none cari">
+                            <strong className="me-2">Cari</strong>
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                <div className="col-12 col-md-6 col-lg-3 border-start border-2 border-dark">
+                    <div className="mx-md-3 me-md-3 mx-lg-4 me-lg-4">
+                        <h5 className="border-bottom border-2 border-dark py-3">Olahraga</h5>
+                        <img src={olahraga} className="w-100 my-3" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At ultrices mi tempus imperdiet. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Mauris ultrices eros in cursus turpis massa. Mauris sit amet massa vitae tortor condimentum lacinia quis. Eu facilisis sed odio morbi quis commodo odio. Sed turpis tincidunt id aliquet. Scelerisque felis imperdiet proin fermentum leo. Sed sed risus pretium quam vulputate. Posuere urna nec tincidunt praesent semper.</p>
+                        <a href="#" className="text-dark text-decoration-none cari">
+                            <strong className="me-2">Cari</strong>
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                    <br/>
+                    <div className="mx-md-3 me-md-3 mx-lg-4 me-lg-4">
+                        <h5 className="border-bottom border-2 border-dark py-3">Wisata</h5>
+                        <img src={wisata} className="w-100 my-3" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At ultrices mi tempus imperdiet. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Mauris ultrices eros in cursus turpis massa. Mauris sit amet massa vitae tortor condimentum lacinia quis. Eu facilisis sed odio morbi quis commodo odio. Sed turpis tincidunt id aliquet. Scelerisque felis imperdiet proin fermentum leo. Sed sed risus pretium quam vulputate. Posuere urna nec tincidunt praesent semper.</p>
+                        <a href="#" className="text-dark text-decoration-none cari">
+                            <strong className="me-2">Cari</strong>
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                </div>

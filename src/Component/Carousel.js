@@ -4,7 +4,7 @@ import jumbo3 from "../Image/jumbo3.jpg"
 import jumbo4 from "../Image/jumbo4.jpg"
 
 export const Carousel = () => {
-    return(
+    return (
         <div id="demo" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -12,37 +12,49 @@ export const Carousel = () => {
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
             </div>
-            <div class="carousel-inner">
-                 <div class="carousel-item active">
-                    <img src={jumbo1} alt="Los Angeles" class="carousel-img"/>
-                    <div class="carousel-caption text-start">
-                        <h1 className="col-12 col-lg-6">Terkini, Terakurat, Terpercaya</h1><br/>
-                        <p className="col-12 col-lg-6">Dapatkan berita terbaru yang akurat, dan tentunya berasal dari sumber yang terpercaya.</p>
-                        <br/><br/><br/><br/>
+            <div class="carousel-inner bg-biru">
+                <div class="carousel-item active">
+                    <div class="carousel-caption text-lg-start row">
+                        <div className="col-12 col-lg-6 pb-3">
+                            <img src={jumbo1} className="w-100 my-2"/>
+                        </div>
+                        <div className="col-12 col-lg-6">
+                            <h2 className="mt-lg-5">Terkini, Terakurat, Terpercaya</h2><br/>
+                            <p>Dapatkan berita terbaru yang akurat, dan tentunya berasal dari sumber yang terpercaya.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img src={jumbo2} alt="Chicago" class="carousel-img"/>
-                    <div class="carousel-caption text-start">
-                        <h1 className="col-12 col-lg-6">Waspada berita HOAX!</h1><br/>
-                        <p className="col-12 col-lg-6">Dalam JuCo., kita berfokus pada mencari fakta dan memberikan informasi secara faktual.</p>
-                        <br/><br/><br/><br/>
+                <div class="carousel-item active">
+                    <div class="carousel-caption text-lg-start row">
+                        <div className="col-12 col-lg-6 pb-3">
+                            <img src={jumbo1} className="w-100 my-2"/>
+                        </div>
+                        <div className="col-12 col-lg-6">
+                            <h2 className="mt-lg-5">Terkini, Terakurat, Terpercaya</h2><br/>
+                            <p>Dapatkan berita terbaru yang akurat, dan tentunya berasal dari sumber yang terpercaya.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img src={jumbo3} alt="New York" class="carousel-img"/>
-                    <div class="carousel-caption text-start">
-                        <h1 className="col-12 col-lg-6">Terkini, Terakurat, Terpercaya</h1><br/>
-                        <p className="col-12 col-lg-6">Dapatkan berita terbaru yang akurat, dan tentunya berasal dari sumber yang terpercaya.</p>
-                        <br/><br/><br/><br/>
+                <div class="carousel-item active">
+                    <div class="carousel-caption text-lg-start row">
+                        <div className="col-12 col-lg-6 pb-3">
+                            <img src={jumbo1} className="w-100 my-2"/>
+                        </div>
+                        <div className="col-12 col-lg-6">
+                            <h2 className="mt-lg-5">Terkini, Terakurat, Terpercaya</h2><br/>
+                            <p>Dapatkan berita terbaru yang akurat, dan tentunya berasal dari sumber yang terpercaya.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img src={jumbo4} alt="New York" class="carousel-img"/>
-                    <div class="carousel-caption text-start">
-                        <h1 className="col-12 col-lg-6">Sebarkan Event mu</h1><br/>
-                        <p className="col-12 col-lg-6">Jangkau redaksi untuk penyebaran informasi secara cepat. Semakin banyak yang tau, semakin ramai event mu</p>
-                        <br/><br/><br/><br/>
+                <div class="carousel-item active">
+                    <div class="carousel-caption text-lg-start row">
+                        <div className="col-12 col-lg-6 pb-3">
+                            <img src={jumbo1} className="w-100 my-2"/>
+                        </div>
+                        <div className="col-12 col-lg-6">
+                            <h2 className="mt-lg-5">Terkini, Terakurat, Terpercaya</h2><br/>
+                            <p>Dapatkan berita terbaru yang akurat, dan tentunya berasal dari sumber yang terpercaya.</p>
+                        </div>
                     </div>
                 </div>
             </div>

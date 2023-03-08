@@ -42,7 +42,7 @@ export const Login = () => {
                     localStorage.setItem('id', response.data.id)
                     localStorage.setItem('email', response.data.email)
                     localStorage.setItem('token', response.data.token)
-                    navigate('../profile')
+                    navigate('../profil')
                 }
             })
             .catch(function (error) {
