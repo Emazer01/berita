@@ -5,7 +5,6 @@ import jumbo1 from "../Image/jumbo1.jpg"
 import jumbo2 from "../Image/jumbo2.jpg"
 import jumbo3 from "../Image/jumbo3.jpg"
 import jumbo4 from "../Image/jumbo4.jpg"
-import berita from "../Image/berita.jpg"
 import olahraga from "../Image/olahraga.jpg"
 import event from "../Image/event.jpg"
 import gaya from "../Image/gaya.jpg"
@@ -34,9 +33,9 @@ export const Main = () => {
                 <div className="col"></div>
                 <div className="col-lg-7 mx-2">
                     <div className="px-3 pt-2 bg-white d-flex shadow">
-                        <a href="" className="text-decoration-none text-black me-5 border-bottom"><p className="fw-semibold border-bottom border-danger border-3">Berita Terbaru</p></a>
-                        <a href="" className="text-decoration-none text-black me-5"><p className="fw-semibold">Trend</p></a>
-                        <a href="" className="text-decoration-none text-black me-5"><p className="fw-semibold">Lainnya</p></a>
+                        <a href="" className="text-decoration-none text-black me-5 border-bottom">
+                            <p className="fw-semibold border-bottom border-danger border-3">Berita Terbaru</p>
+                        </a>
                         <button className="ms-auto btn mb-1" id="row-btn" onClick={row}>
                             <i class="bi bi-hdd-stack-fill"></i>
                         </button>

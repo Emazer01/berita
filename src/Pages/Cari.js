@@ -2,7 +2,17 @@ import { Carousel } from "../Component/Carousel"
 import { Footer } from "../Component/Footer"
 import { Navbar } from "../Component/Navbar"
 
+import olahraga from "../Image/kategori/olahraga.jpg"
+import politik from "../Image/kategori/politik.jpg"
+import teknologi from "../Image/kategori/teknologi.jpg"
+import budaya from "../Image/kategori/budaya.jpg"
+import bisnis from "../Image/kategori/bisnis.jpg"
+import fashion from "../Image/kategori/fashion.jpg"
+import kesehatan from "../Image/kategori/kesehatan.jpg"
+import lainnya from "../Image/kategori/lainnya.jpg"
+
 export const Cari = () => {
+
     return (
         <div>
             <Navbar />
@@ -22,19 +32,50 @@ export const Cari = () => {
                         <div className="bg-white mb-2">
                             <p className="fw-semibold p-2 px-3">Kategori</p>
                         </div>
-                        <div className="bg-white mb-2">
-                            <p className="fw-semibold p-2 px-3"> </p>
+                        <div className="mb-3 row mx-lg-1">
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={olahraga} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Olahraga</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={politik} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Politik</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={teknologi} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Sains & Teknologi</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={budaya} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Budaya</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={bisnis} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Bisnis & Financial</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={fashion} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Fashion & Beauty</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={kesehatan} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Kesehatan</span>
+                            </a>
+                            <a href="#kat" className="card text-bg-dark btn border-0 col-6 col-md-4 col-lg-3 p-0">
+                                <img src={lainnya} className="card-img rounded-0 h-100 img-fluid object-fit-cover" alt="..."/>
+                                <span className="card-img-overlay rounded-0 fw-semibold kat-ovr">Lainnya</span>
+                            </a>
                         </div>
                     </div>
                     <div>
                         <div className="bg-white mb-2">
-                            <p className="fw-semibold p-2 px-3">Kategori</p>
+                            <p className="fw-semibold p-2 px-3">Lelang Berita</p>
                         </div>
                         <div className="bg-white mb-2">
                             <p className="fw-semibold p-2 px-3"> </p>
                         </div>
                     </div><div>
-                        <div className="bg-white mb-2">
+                        <div className="bg-white mb-2" id="kat">
                             <p className="fw-semibold p-2 px-3">Kategori</p>
                         </div>
                         <div className="bg-white mb-2">

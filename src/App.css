@@ -63,20 +63,28 @@ p, button, span{
   font-size: 35px;
 }
 .isi-nav{
-  font-size: 15px;
+  font-size: 13px;
   font-family: 'Nunito Sans', sans-serif;
 }
 .isi{
   transition: 0.2s;
-  margin: 0px 15px;
+  margin: 0px 12px;
   border-bottom: 2px solid transparent;
 }
 .isi:hover{
   border-bottom: 2px solid;
 }
-
+.font-nunito{
+  font-family: 'Nunito Sans', sans-serif;
+}
 .h-55-vh{
   height: 55vh;
+}
+.mt-minus-50-vh{
+  margin-top: -50vh;
+}
+.mt-minus-150-px{
+  margin-top: -150px;
 }
 
 /*Carousel*/
@@ -98,10 +106,22 @@ p, button, span{
   border: 2px solid #0E1E32
 }
 
+.kat-ovr{
+  background-color: rgb(14, 30, 50,0.45);
+  transition: 0.2s;
+  font-size: 18px
+}
+.kat-ovr:hover{
+  background-color: rgb(14, 30, 50,0.65);
+  font-size: 20px
+}
+
 .profil{
-  margin-top: -80px;
-  height: 170px;
+  height: 140px;
   width: auto;
+}
+.sampul{
+  height: 200px;
 }
 
 .cari{

@@ -1,0 +1,28 @@
+    const [fileBase64String, setFileBase64String] = useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const file = data.get('foto')
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            var Base64 = reader.result;
+            setFileBase64String(Base64);
+            //console.log(Base64);
+        };
+        reader.onerror = (error) => {
+            console.log("error: ", error);
+        };
+        console.log(file)
+        console.log(fileBase64String)
+    }
+
+    <form onSubmit={handleSubmit} className="dark mb-5">
+                        <div>
+                            <input type="file" class="form-control rounded-3 border border-tertiary border-2 shadow-sm" accept="image/png, image/gif, image/jpeg" name="foto" />
+                        </div>
+                        <button type="submit" class="btn btn-biru my-3 w-100 rounded-3 shadow">Masuk</button>
+                        
+                    </form>
+                    <img src={fileBase64String}/>

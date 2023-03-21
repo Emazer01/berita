@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Buffer } from "buffer";
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from "react";
+import { Footer } from "../Component/Footer";
+import logo from "../Image/logo.png"
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -58,35 +60,47 @@ export const Login = () => {
     }
 
     return (
-        <div>
-            <Tagline />
+        <div className="bg-f5">
             <Navbar />
-            <div className="row m-4">
+            <div className="bg-biru h-55-vh"></div>
+            <div className="row mb-5 mt-minus-50-vh">
                 <div className="col"></div>
-                <div className="col-md-8 col-lg-5">
-                    <div class="alert alert-danger opacity-0" id="login-fail" role="alert">
-                        A simple danger alert—check it out!
+                <div className="col-10 col-md-6 col-lg-5 bg-body-tertiary shadow row">
+                    <div className="col"></div>
+                    <div className="col-10 col-lg-8 py-4">
+                        <div className="d-flex mt-5">
+                            <h2 className="font-nunito fw-bold">MASUK</h2>
+                            <div class="spinner-border text-dark ms-auto d-none" role="status" id="login-loading">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <p className="text-muted mb-1">
+                            <small>Masukkan data anda dibawah</small>
+                        </p>
+                        <div class="alert alert-danger p-2 rounded-3 opacity-0 mb-1" role="alert" id="login-fail">
+                            <small><strong>Gagal Masuk! </strong>Email/Password salah</small>
+                        </div>
+                        <form onSubmit={handleSubmit} className="dark mb-5">
+                            <div>
+                                <label for="email" className="font-nunito fw-bold">Email</label>
+                                <input type="email" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="email" placeholder="Enter email" name="email" />
+                            </div>
+                            <div class="my-4">
+                                <label for="pwd" className="font-nunito fw-bold">Password</label>
+                                <input type="password" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="pwd" placeholder="Enter password" name="pswd" />
+                            </div>
+                            <button type="submit" class="btn btn-biru my-3 w-100 rounded-3 shadow">Masuk</button>
+                            <p className="text-center">
+                                <small className="text-muted">Tidak punya akun? </small>
+                                <small className="fw-semibold"><a href="/register" className="text-dark text-decoration-none">Daftar!</a></small>
+                            </p>
+                        </form>
                     </div>
-                    <h2 className="border-start border-4 border-dark ps-3">Masuk</h2>
-                    <form onSubmit={handleSubmit} className="dark mb-3">
-                        <div class="mb-3 mt-3">
-                            <label for="email">Email:</label>
-                            <input type="email" onChange={() => { fresh() }} class="form-control" id="email" placeholder="Enter email" name="email" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="pwd">Password:</label>
-                            <input type="password" onChange={() => { fresh() }} class="form-control" id="pwd" placeholder="Enter password" name="pswd" />
-                        </div>
-                        <br />
-                        <button type="submit" class="btn btn-dark me-4">Masuk</button>
-                        <a href="/register" className="text-dark">Daftar</a>
-                        <div class="spinner-border ms-5 d-none" id="login-loading" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </form>
+                    <div className="col"></div>
                 </div>
                 <div className="col"></div>
             </div>
+            <Footer />
         </div>
     )
 }
