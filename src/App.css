@@ -119,6 +119,10 @@ p, button, span{
 .profil{
   height: 140px;
   width: auto;
+  aspect-ratio: 1/1;
+}
+.aspect-ratio-1{
+  aspect-ratio: 1/1;
 }
 .sampul{
   height: 200px;
@@ -140,5 +144,16 @@ p, button, span{
 }
 
 .pdf-view{
-  height: 500px;
+  height: 600px;
+}
+
+.form-check-input:checked{
+  background-color: #676d73 !important;
+  border: 0;
+}
+.form-check-input:focus, .form-control:focus, .form-select:focus, .label::after, label.form-check-label:focus, .form-check-input::after, .form-check-input:not(:disabled):not(.disabled):active:focus {
+  color: black;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 0 0 0.15rem rgb(103,109,115,0) !important;
 }

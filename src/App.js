@@ -7,6 +7,8 @@ import { Login } from './Pages/Login';
 import { Profile } from './Pages/Profile';
 import { Register } from './Pages/Register';
 import { Cari } from './Pages/Cari';
+import { Pasang } from './Pages/Pasang';
+import { View } from './Pages/View';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/profil" element={<Profile />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/cari" element={<Cari />}></Route>
+        <Route path="/pasang" element={<Pasang />}></Route>
+        <Route path="/view" element={<View />}></Route>
       </Routes>
     </BrowserRouter>
   );
