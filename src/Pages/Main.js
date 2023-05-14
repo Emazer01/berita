@@ -275,41 +275,6 @@ export const Main = () => {
             </div>
             <div className="row p-4 bg-f5">
                 <div className="col"></div>
-                <div className="col-lg-10 mx-3">
-                    <p className="fw-semibold mt-2">Editorial's Pick<i class="ms-2 bi bi-star-fill"></i></p>
-                    <div className="row">
-                        <div class="card my-3 border-0 col-12 col-md-6 bg-f5">
-                            <div class="row g-0">
-                                <div class="col-md-5">
-                                    <img src={jumbo1} class="img-fluid rounded-1" alt="..." />
-                                </div>
-                                <div class="col-md-7 d-flex flex-column">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card my-3 border-0 col-12 col-md-6 bg-f5">
-                            <div class="row g-0">
-                                <div class="col-md-5">
-                                    <img src={jumbo1} class="img-fluid rounded-1" alt="..." />
-                                </div>
-                                <div class="col-md-7 d-flex flex-column">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col"></div>
-            </div>
-            <div className="row p-4 bg-f5">
-                <div className="col"></div>
                 <div className="col-lg-10 mx-2">
                 </div>
                 <div className="col"></div>

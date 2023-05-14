@@ -22,10 +22,7 @@ export const Navbar = () => {
                         <div className="w-25"></div>
                         <div class="navbar-nav isi-nav w-50 justify-content-center">
                             <a class="nav-link isi fw-bold" href="/" id="beranda">Beranda</a>
-                            <a class="nav-link isi fw-bold" href="#" id="lelang">Lelang Berita</a>
                             <a class="nav-link isi fw-bold" href="/cari" id="cari">Cari Berita</a>
-                            <a class="nav-link isi fw-bold" href="#" id="kategori">Kategori</a>
-                            <a class="nav-link isi fw-bold text-danger" href="#">Terbaru</a>
                         </div>
                         <div class="navbar-nav isi-nav w-25 justify-content-end">
                             <a class="nav-link fw-bold fs-4 p-0 mx-3" href="/profil"><i class="bi bi-gear-fill"></i></a>

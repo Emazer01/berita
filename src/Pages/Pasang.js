@@ -122,13 +122,12 @@ export const Pasang = () => {
         }
         const date = new Date()
         const harga = data.get('harga')
-        const waktu = Number(data.get('waktu'))
         const note = data.get('note')
         const kategori = Number(data.get('kategori'))
         const fotoUrl = foto.url
         const file = viewPdf
         console.log(foto.file.size)
-        console.log(judul, nama, lelang, deskripsi, harga, waktu, kategori, note,date)
+        console.log(judul, nama, lelang, deskripsi, harga, kategori, note,date)
         if (foto.file.size > 1200000) {
             document.getElementById('submitBeritaAlert').classList.remove('opacity-0')
             document.getElementById('submitBerita-loading').classList.add('d-none')
@@ -149,7 +148,6 @@ export const Pasang = () => {
                 harga: harga,
                 date:date,
                 kategori: kategori,
-                waktu: waktu,
                 note: note,
                 fotoUrl: fotoUrl,
                 file: file
@@ -226,15 +224,6 @@ export const Pasang = () => {
                                             <div className='input-group rounded-3 border border-tertiary border-1 shadow-sm'>
                                                 <span class="input-group-text text-muted" id="basic-addon1">Rp</span>
                                                 <input type="number" class="form-control p-1" id="harga" placeholder="Harga" name="harga" aria-describedby="basic-addon1" />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th className="text-start font-nunito col-3">Jangka Waktu</th>
-                                        <td className="text-end p-2">
-                                            <div className='input-group rounded-3 border border-tertiary border-1 shadow-sm'>
-                                                <input type="number" class="form-control p-1" id="waktu" placeholder="Jangka Waktu" name="waktu" aria-describedby="basic-addon2" />
-                                                <span class="input-group-text text-muted" id="basic-addon2">Hari</span>
                                             </div>
                                         </td>
                                     </tr>

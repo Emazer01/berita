@@ -23,11 +23,17 @@ export const Register = () => {
         const username = data.get('username')
         const password = data.get('pswd')
         const email = data.get('email')
-        if (username != '' && password != '' && email != '') {
+        var wartawan = data.get('wartawan')
+        if (wartawan==null) {
+            wartawan = 3
+        }
+        console.log(wartawan)
+        if (username != '' && password != '' && email != '' && wartawan !=null) {
             axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
                 username: username,
                 email: email,
-                password: password
+                password: password,
+                wartawan: wartawan
             })
                 .then(function (response) {
                     if (response.data == 'Berhasil Register') {
@@ -47,26 +53,26 @@ export const Register = () => {
             document.getElementById("register-fail").classList.remove("opacity-0")
         }
     }
-/*
-    const handleChange = (e) => {
-        let selectedFile = e.target.files[0]
-        if (selectedFile) {
-            if (selectedFile && selectedFile.type == 'application/pdf') {
-                let reader = new FileReader()
-                reader.readAsDataURL(selectedFile)
-                reader.onload = (e) => {
-                    setPdfFile(e.target.result)
+    /*
+        const handleChange = (e) => {
+            let selectedFile = e.target.files[0]
+            if (selectedFile) {
+                if (selectedFile && selectedFile.type == 'application/pdf') {
+                    let reader = new FileReader()
+                    reader.readAsDataURL(selectedFile)
+                    reader.onload = (e) => {
+                        setPdfFile(e.target.result)
+                    }
+                }
+                else {
+                    setPdfFile(null)
                 }
             }
             else {
-                setPdfFile(null)
+                console.log("Select File")
             }
         }
-        else {
-            console.log("Select File")
-        }
-    }
-*/
+    */
     const fresh = () => {
         document.getElementById("register-fail").classList.add("opacity-0")
     }
@@ -104,6 +110,12 @@ export const Register = () => {
                             <div class="my-3">
                                 <label for="pwd" className="font-nunito fw-bold">Password</label>
                                 <input type="password" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="pwd" placeholder="Enter password" name="pswd" />
+                            </div>
+                            <div class="form-check px-5">
+                                <input class="form-check-input fs-4 rounded-3 border border-tertiary border-2 shadow-sm" type="checkbox" value="2" id="flexCheckDefault" name="wartawan"/>
+                                    <label class="form-check-label font-nunito fw-bold p-2" for="flexCheckDefault">
+                                        Daftar sebagai wartawan
+                                    </label>
                             </div>
                             <button type="submit" class="btn btn-biru my-3 w-100 rounded-3 shadow">Daftar</button>
                             <p className="text-center">

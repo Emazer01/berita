@@ -66,9 +66,13 @@ export const View = () => {
                     setBeritaState(daftar_berita)
                     if (daftar_berita.profile_id == profile_id) {
                         document.getElementById("pengajuan").classList.add("d-none")
-                        document.getElementById("lanjutkan").innerHTML = "<a class='btn btn-biru px-5'>Lanjutkan</a>"
+                        document.getElementById("lanjutkan").innerHTML = `<a href='/cekout/?id=${daftar_berita.berita_id}' class='btn btn-biru px-5'>Lanjutkan</a>`
                     } else {
                         document.getElementById("pengajuan").classList.remove("d-none")
+                    }
+                    if (daftar_berita.level_berita_id == 2){
+                        document.getElementById("input_harga").disabled = true;
+                        document.getElementById("input_harga").readonly = true;
                     }
 
                 } else {
@@ -126,13 +130,15 @@ export const View = () => {
         const id = localStorage.getItem('id');
         const user = localStorage.getItem('user');
         const profile_id = Number(localStorage.getItem('profile_id'))
-        const harga = data.get('harga')
+        const harga = document.getElementById("input_harga").value
+        console.log(harga)
         const note = data.get('note')
         const queryString = window.location.search;
         console.log(queryString);
         const urlParams = new URLSearchParams(queryString);
         const berita_id = urlParams.get('id')
-        if (levelState.level_id < 3 && profile_id != beritaState.profile_id) {
+        console.log(levelState)
+        if (levelState.level_akun_id < 3 && profile_id != beritaState.profile_id) {
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}/submitpenawaran`, {
                 token: token,
                 id: id,
@@ -209,12 +215,12 @@ export const View = () => {
                                     <td className="text-start p-2 fs-5">{beritaState.level_label}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start font-nunito">Kedaluwarsa</th>
-                                    <td className="text-start p-2 fs-5">{beritaState.waktu} Hari</td>
-                                </tr>
-                                <tr>
                                     <th className="text-start font-nunito">Kategori</th>
                                     <td className="text-start p-2 fs-5">{beritaState.kategori_label}</td>
+                                </tr>
+                                <tr>
+                                    <th className="text-start font-nunito">Jenis</th>
+                                    <td className="text-start p-2 fs-5">{beritaState.level_berita_label}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start font-nunito col-3">Note</th>
@@ -249,7 +255,7 @@ export const View = () => {
                                         <td className="text-end p-2">
                                             <div className='input-group rounded-3 border border-tertiary border-1 shadow-sm'>
                                                 <span class="input-group-text text-muted" id="basic-addon1">Rp</span>
-                                                <input type="number" class="form-control p-1" id="harga" placeholder="Harga" name="harga" aria-describedby="basic-addon1" min={beritaState.harga} defaultValue={beritaState.harga} />
+                                                <input type="number" class="form-control p-1" id="input_harga" placeholder="Harga" name="harga" aria-describedby="basic-addon1" min={beritaState.harga} step='1000' defaultValue={beritaState.harga}/>
                                             </div>
                                         </td>
                                     </tr>

@@ -9,6 +9,8 @@ import { Register } from './Pages/Register';
 import { Cari } from './Pages/Cari';
 import { Pasang } from './Pages/Pasang';
 import { View } from './Pages/View';
+import { Cekout } from './Pages/Cekout';
+import { Permission } from './Pages/Permission';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/cari" element={<Cari />}></Route>
         <Route path="/pasang" element={<Pasang />}></Route>
         <Route path="/view" element={<View />}></Route>
+        <Route path="/cekout" element={<Cekout />}></Route>
+        <Route path="/permission" element={<Permission />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -53,7 +53,7 @@ export const Profile = () => {
                             noHp: response.data.profile.no_hp,
                             foto: response.data.profile.foto,
                             suratRedaksi: response.data.profile.surat_redaksi_id,
-                            level: response.data.profile.level_label,
+                            level: response.data.profile.level_akun_label,
                             bio: response.data.profile.bio
                         })
                         setFoto({
