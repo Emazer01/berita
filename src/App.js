@@ -11,6 +11,7 @@ import { Pasang } from './Pages/Pasang';
 import { View } from './Pages/View';
 import { Cekout } from './Pages/Cekout';
 import { Permission } from './Pages/Permission';
+import { Bayar } from './Pages/Bayar';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/pasang" element={<Pasang />}></Route>
         <Route path="/view" element={<View />}></Route>
         <Route path="/cekout" element={<Cekout />}></Route>
+        <Route path="/bayar" element={<Bayar />}></Route>
         <Route path="/permission" element={<Permission />}></Route>
       </Routes>
     </BrowserRouter>

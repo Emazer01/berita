@@ -89,10 +89,8 @@ export const Cekout = () => {
                                     harga += 0
                                 }
                             }
-                            console.log(`Harga = ${harga}`)
                             document.getElementById('total').innerHTML = harga
                         }
-                        console.log(daftar_penawaran)
                         setPenawaranState(daftar_penawaran);
                         var list = `<tr>
                                         <th class="fw-semibold px-1">Pilih</th>
@@ -136,22 +134,72 @@ export const Cekout = () => {
         penawarans(berita_id)
     }, [])
 
-    /*
-    const calculate = () => {
-        console.log(penawaranState)
-        var harga = document.getElementById('total').innerHTML
+    function sleep(ms) {
+        return new Promise(
+            resolve => setTimeout(resolve, ms)
+        );
+    }
 
-        
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const total = document.getElementById('total').innerHTML
+        const token = localStorage.getItem('token');
+        const id = localStorage.getItem('id');
+        const user = localStorage.getItem('user');
+        const profile_id = Number(localStorage.getItem('profile_id'))
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const berita_id = urlParams.get('id')
+        console.log(total)
+        var list_pen = []
         for (const key in penawaranState) {
             if (document.getElementById(`pen${key}`).checked == true) {
-                harga += Number(document.getElementById(`pen${key}`).value)
-            } else {
-                harga += 0
+                list_pen.push(penawaranState[key].penawaran_id)
             }
         }
-        console.log(`Harga = ${harga}`)
-        document.getElementById('total').innerHTML = harga
-    }*/
+        console.log(list_pen)
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/submitbayar`, {
+            token: token,
+            id: id,
+            user: user,
+            profile_id: profile_id,
+            berita_id: berita_id,
+            harga_total: total,
+            list_pen: list_pen
+        })
+            .then(async function (response) {
+                console.log(response)
+                if (response.status == 200) {
+                    document.getElementById('submitBayarAlert').classList.remove('opacity-0')
+                    document.getElementById('submitBayar-loading').classList.add('d-none')
+                    document.getElementById('submitBayar-success').classList.remove('d-none');
+                    await sleep(2000);
+                    document.getElementById('submitBayar-success').classList.add('d-none');
+                    document.getElementById("submitBayar-loading").classList.remove('d-none')
+                    document.getElementById('submitBayarAlert').classList.add('opacity-0')
+                    navigate('../bayar')
+
+                } else {
+                    document.getElementById('submitBayarAlert').classList.remove('opacity-0')
+                    document.getElementById('submitBayar-loading').classList.add('d-none')
+                    document.getElementById('submitBayar-fail').classList.remove('d-none');
+                    await sleep(2000);
+                    document.getElementById('submitBayar-fail').classList.add('d-none')
+                    document.getElementById("submitBayar-loading").classList.remove('d-none')
+                    document.getElementById('submitBayarAlert').classList.add('opacity-0')
+                }
+            })
+            .catch(async function (error) {
+                document.getElementById('submitBayarAlert').classList.remove('opacity-0')
+                document.getElementById('submitBayar-loading').classList.add('d-none')
+                document.getElementById('submitBayar-fail').classList.remove('d-none');
+                await sleep(2000);
+                document.getElementById('submitBayar-fail').classList.add('d-none')
+                document.getElementById("submitBayar-loading").classList.remove('d-none')
+                document.getElementById('submitBayarAlert').classList.add('opacity-0')
+            });
+    }
 
     return (
         <div>
@@ -217,9 +265,24 @@ export const Cekout = () => {
                             </form>
                         </div>
                         <div className="col-12 col-md-4 text-center">
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <h4>Total</h4>
                                 <h5>Rp <span id="total">0</span></h5>
+                                <div className='px-5' id='bayar'>
+                                    <div className='opacity-0' id='submitBayarAlert'>
+                                        <div className='text-center my-2'>
+                                            <div class="spinner-border text-dark ms-auto" role="status" id="submitBayar-loading">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-danger p-2 rounded-3 my-2 d-none" role="alert" id="submitBayar-fail">
+                                            <small><strong>Gagal Proses! </strong><br /><span id="pesan-gagal"></span></small>
+                                        </div>
+                                        <div class="alert alert-success p-2 rounded-3 my-2 d-none" role="alert" id="submitBayar-success">
+                                            <small><strong>Berhasil! </strong></small>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="px-5">
                                     <button type="submit" class="btn btn-biru my-3 w-100 rounded-3 shadow">Bayar</button>
                                 </div>
