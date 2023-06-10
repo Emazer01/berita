@@ -38,19 +38,14 @@ export const Main = () => {
                         listRow +=
                             `<div class="card my-3 rounded-0 border-0 shadow">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src=${daftar_berita[index].image} class="h-100 img-fluid object-fit-cover" alt="..." />
-                                    </div>
-                                    <div class="col-md-8 d-flex flex-column">
-                                        <div class="card-body">
+                                    <div class="col-md-12 d-flex flex-column">
+                                        <div class="card-body p-2">
                                             <h5 class="card-title">${daftar_berita[index].judul}</h5>
-                                            <p class="card-text">${daftar_berita[index].deskripsi.substring(0, 200)}...</p>
-                                            <p class="card-text"><small class="text-muted">${daftar_berita[index].tanggal.substring(0, 10)} | </small><small class="text-muted">${daftar_berita[index].nama}</small></p>
                                         </div>
                                         <div class="border-top d-flex">
-                                            <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>${daftar_berita[index].harga}</span></small></span>
-                                            <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><small><span>1</span></small></span>
-                                            <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
+                                            <p class="card-text m-1 mx-2"><small class="text-muted">${daftar_berita[index].tanggal.substring(0, 10)} | </small><small class="text-muted">${daftar_berita[index].nama}</small></p>
+                                            <span class="card-text my-1 text-danger ms-auto mx-2"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>${daftar_berita[index].harga}</span></small></span>
+                                            <a href="/view/?id=${daftar_berita[index].berita_id}" class="btn rounded-0 btn-biru ">LIHAT<i class="bi bi-caret-right-fill"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -96,14 +91,14 @@ export const Main = () => {
                         <a href="" className="text-decoration-none text-black me-5 border-bottom">
                             <p className="fw-semibold border-bottom border-danger border-3">Berita Terbaru</p>
                         </a>
-                        <button className="ms-auto btn mb-1" id="row-btn" onClick={row}>
+                        <button className="ms-auto btn mb-1 d-none" id="row-btn" onClick={row}>
                             <i class="bi bi-hdd-stack-fill"></i>
                         </button>
                         <button className="ms-auto btn mb-1 d-none" id="grid-btn" onClick={grid}>
                             <i class="bi bi-grid-fill"></i>
                         </button>
                     </div>
-                    <div id="row-view" className="d-none">
+                    <div id="row-view">
                         <div class="card my-3 rounded-0 border-0 shadow">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -181,7 +176,7 @@ export const Main = () => {
                             </div>
                         </div>
                     </div>
-                    <div id="grid-view">
+                    <div id="grid-view" className="d-none">
                         <div className="mt-2 row" id='list-grid'>
                             <div className="col-12 col-md-6 my-2 px-3">
                                 <div class="card rounded-0 border-0 p-0 shadow">

@@ -7,8 +7,10 @@ import { Viewer, Worker } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin, DefaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import '@react-pdf-viewer/core/lib/styles/index.css'
 import '@react-pdf-viewer/default-layout/lib/styles/index.css'
+import { useHref, useNavigate } from 'react-router-dom';
 
 export const View = () => {
+    const navigate = useNavigate()
     const [beritaState, setBeritaState] = React.useState({
         judul: '',
         nama: '',
@@ -45,11 +47,13 @@ export const View = () => {
                     setLevelState(level)
                 } else {
                     console.log('Tidak berhasil mengambil postingan')
+                    navigate('../login')
                     return
                 }
             })
             .catch(async function (error) {
                 console.log(error)
+                navigate('../login')
                 return
             });
 
@@ -66,9 +70,14 @@ export const View = () => {
                     setBeritaState(daftar_berita)
                     if (daftar_berita.profile_id == profile_id) {
                         document.getElementById("pengajuan").classList.add("d-none")
-                        document.getElementById("lanjutkan").innerHTML = `<a href='/cekout/?id=${daftar_berita.berita_id}' class='btn btn-biru px-5'>Lanjutkan</a>`
+                        if (daftar_berita.level_berita_id!=3) {
+                            document.getElementById("lanjutkan").innerHTML = `<a href='/cekout/?id=${daftar_berita.berita_id}' class='btn btn-biru px-5'>Lanjutkan</a>`
+                        } else {
+                            document.getElementById("lanjutkan").innerHTML = `Selesai`
+                        }
                     } else {
                         document.getElementById("pengajuan").classList.remove("d-none")
+                        navigate('../login')
                     }
                     if (daftar_berita.level_berita_id == 2){
                         document.getElementById("input_harga").disabled = true;

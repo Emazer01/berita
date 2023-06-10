@@ -144,43 +144,64 @@ export const Cekout = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const total = document.getElementById('total').innerHTML
-        const token = localStorage.getItem('token');
-        const id = localStorage.getItem('id');
-        const user = localStorage.getItem('user');
-        const profile_id = Number(localStorage.getItem('profile_id'))
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const berita_id = urlParams.get('id')
-        console.log(total)
-        var list_pen = []
-        for (const key in penawaranState) {
-            if (document.getElementById(`pen${key}`).checked == true) {
-                list_pen.push(penawaranState[key].penawaran_id)
+        if (total == 0) {
+            document.getElementById('submitBayarAlert').classList.remove('opacity-0')
+            document.getElementById('submitBayar-loading').classList.add('d-none')
+            document.getElementById('submitBayar-fail').classList.remove('d-none');
+            await sleep(2000);
+            document.getElementById('submitBayar-fail').classList.add('d-none')
+            document.getElementById("submitBayar-loading").classList.remove('d-none')
+            document.getElementById('submitBayarAlert').classList.add('opacity-0')
+        } else {
+            const token = localStorage.getItem('token');
+            const id = localStorage.getItem('id');
+            const user = localStorage.getItem('user');
+            const profile_id = Number(localStorage.getItem('profile_id'))
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const berita_id = urlParams.get('id')
+            console.log(total)
+            var list_pen = []
+            for (const key in penawaranState) {
+                if (document.getElementById(`pen${key}`).checked == true) {
+                    list_pen.push(penawaranState[key].penawaran_id)
+                }
             }
-        }
-        console.log(list_pen)
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/submitbayar`, {
-            token: token,
-            id: id,
-            user: user,
-            profile_id: profile_id,
-            berita_id: berita_id,
-            harga_total: total,
-            list_pen: list_pen
-        })
-            .then(async function (response) {
-                console.log(response)
-                if (response.status == 200) {
-                    document.getElementById('submitBayarAlert').classList.remove('opacity-0')
-                    document.getElementById('submitBayar-loading').classList.add('d-none')
-                    document.getElementById('submitBayar-success').classList.remove('d-none');
-                    await sleep(2000);
-                    document.getElementById('submitBayar-success').classList.add('d-none');
-                    document.getElementById("submitBayar-loading").classList.remove('d-none')
-                    document.getElementById('submitBayarAlert').classList.add('opacity-0')
-                    navigate('../bayar')
+            console.log(list_pen)
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/submitbayar`, {
+                token: token,
+                id: id,
+                user: user,
+                profile_id: profile_id,
+                berita_id: berita_id,
+                harga_total: total,
+                list_pen: list_pen
+            })
+                .then(async function (response) {
+                    console.log(response)
+                    if (response.status == 200) {
+                        document.getElementById('submitBayarAlert').classList.remove('opacity-0')
+                        document.getElementById('submitBayar-loading').classList.add('d-none')
+                        document.getElementById('submitBayar-success').classList.remove('d-none');
+                        await sleep(2000);
+                        document.getElementById('submitBayar-success').classList.add('d-none');
+                        document.getElementById("submitBayar-loading").classList.remove('d-none')
+                        document.getElementById('submitBayarAlert').classList.add('opacity-0')
+                        console.log(response.data[0])
+                        localStorage.setItem('transaksi_id', response.data[0].transaksi_id)
+                        navigate('../bayar')
 
-                } else {
+                    } else {
+                        document.getElementById('submitBayarAlert').classList.remove('opacity-0')
+                        document.getElementById('submitBayar-loading').classList.add('d-none')
+                        document.getElementById('submitBayar-fail').classList.remove('d-none');
+                        await sleep(2000);
+                        document.getElementById('submitBayar-fail').classList.add('d-none')
+                        document.getElementById("submitBayar-loading").classList.remove('d-none')
+                        document.getElementById('submitBayarAlert').classList.add('opacity-0')
+                    }
+                })
+                .catch(async function (error) {
                     document.getElementById('submitBayarAlert').classList.remove('opacity-0')
                     document.getElementById('submitBayar-loading').classList.add('d-none')
                     document.getElementById('submitBayar-fail').classList.remove('d-none');
@@ -188,17 +209,9 @@ export const Cekout = () => {
                     document.getElementById('submitBayar-fail').classList.add('d-none')
                     document.getElementById("submitBayar-loading").classList.remove('d-none')
                     document.getElementById('submitBayarAlert').classList.add('opacity-0')
-                }
-            })
-            .catch(async function (error) {
-                document.getElementById('submitBayarAlert').classList.remove('opacity-0')
-                document.getElementById('submitBayar-loading').classList.add('d-none')
-                document.getElementById('submitBayar-fail').classList.remove('d-none');
-                await sleep(2000);
-                document.getElementById('submitBayar-fail').classList.add('d-none')
-                document.getElementById("submitBayar-loading").classList.remove('d-none')
-                document.getElementById('submitBayarAlert').classList.add('opacity-0')
-            });
+                });
+        }
+
     }
 
     return (
@@ -220,7 +233,6 @@ export const Cekout = () => {
                                 </div>
                                 <div className="mt-auto border-top d-flex">
                                     <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i> Rp <span>{beritaState.harga}</span></span>
-                                    <span className="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><span>1</span></span>
                                 </div>
                             </div>
                         </div>

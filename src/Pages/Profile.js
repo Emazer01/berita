@@ -60,6 +60,13 @@ export const Profile = () => {
                             url: response.data.profile.foto,
                             file: {}
                         })
+                        if (response.data.profile.level_akun_label == "Wartawan") {
+                            document.getElementById('btn-posting').classList.add("d-none")
+                            document.getElementById('btn-transaksi').classList.add("d-none")
+                            toPenawaran()
+                        } else if (response.data.profile.level_akun_label == "Narasumber") {
+                            document.getElementById('btn-penawaran').classList.add('d-none')
+                        }
                     } else {
                         navigate('../login')
                     }
@@ -96,7 +103,6 @@ export const Profile = () => {
                                         </div>
                                         <div class="border-top d-flex">
                                             <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>100.000</span></small></span>
-                                            <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><small><span>1</span></small></span>
                                             <a href="/view/?id=${daftar_berita[(daftar_berita.length - 1) - index].berita_id}" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
                                         </div>
                                     </div>
@@ -116,7 +122,97 @@ export const Profile = () => {
                 console.log(error)
                 return
             });
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/viewtransaksi`, {
+            token: token,
+            profile_id: profile_id
+        })
+            .then(async function (response) {
+                if (response.status == 200) {
+                    const daftar_transaksi = response.data
+                    console.log(daftar_transaksi)
+                    var list_transaksi = ''
+                    for (let index = 0; index < daftar_transaksi.length; index++) {
+                        list_transaksi +=
+                            `<div class="card my-3 rounded-0 border-0 shadow">
+                                    <div class="row g-0">
+                                        <div class="col-md-12 d-flex flex-column">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${daftar_transaksi[(daftar_transaksi.length - 1) - index].judul}</h5>
+                                            </div>
+                                            <div class="border-top d-flex">
+                                                <p class="card-text m-1 mx-2"><small class="text-muted">${daftar_transaksi[(daftar_transaksi.length - 1) - index].tanggal.substring(0, 10)}</small></p>
+                                                <p class='m-1'><button class='btn-biru rounded-pill p-0 px-3'><small>${daftar_transaksi[(daftar_transaksi.length - 1) - index].status_transaksi_label}</small></button></p>
+                                                <span class="card-text mx-2 my-1 text-danger ms-auto"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>${daftar_transaksi[(daftar_transaksi.length - 1) - index].harga_total}</span></small></span>
+                                                <a id="btn-trans-${daftar_transaksi[(daftar_transaksi.length - 1) - index].transaksi_id}" class="btn rounded-0 btn-biru">LIHAT<i class="bi bi-caret-right-fill"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+                    }
+                    if (daftar_transaksi.length < 1) {
+                        list_transaksi += `<p class='text-muted'>Belum ada Transaksi</p>`
+                    }
+                    document.getElementById("list-transaksi").innerHTML = list_transaksi
+                    for (let index = 0; index < daftar_transaksi.length; index++) {
+                        document.getElementById(`btn-trans-${daftar_transaksi[index].transaksi_id}`).onclick = toBayar(daftar_transaksi[index].transaksi_id)
+                    }
+                } else {
+                    console.log('Tidak berhasil mengambil postingan')
+                    return
+                }
+            })
+            .catch(async function (error) {
+                console.log(error)
+                return
+            });
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/mypenawaran`, {
+            token: token,
+            profile_id: profile_id
+        })
+            .then(async function (response) {
+                if (response.status == 200) {
+                    const daftar_penawaran = response.data
+                    console.log(daftar_penawaran)
+                    var list_penawaran = `<table class="text-center">
+                                            <tr class="text-center border-bottom border-dark">
+                                                <th class="py-2">ID</th>
+                                                <th>Judul</th>
+                                                <th>Penulis</th>
+                                                <th>Harga</th>
+                                                <th>Status</th>
+                                            </tr>`
+                    const warna = {'Pending':'warning','Approve':'success','Reject':'danger'}
+                    for (let index = 0; index < daftar_penawaran.length; index++) {
+                        list_penawaran +=
+                            `<tr>
+                                <td class="text-center">${daftar_penawaran[(daftar_penawaran.length - 1) - index].penawaran_id}</td>
+                                <td>${daftar_penawaran[(daftar_penawaran.length - 1) - index].judul}</td>
+                                <td>${daftar_penawaran[(daftar_penawaran.length - 1) - index].nama}</td>
+                                <td>${daftar_penawaran[(daftar_penawaran.length - 1) - index].harga}</td>
+                                <td><button class="btn btn-${warna[daftar_penawaran[(daftar_penawaran.length - 1) - index].level_penawaran_label]} py-0 rounded-pill">${daftar_penawaran[(daftar_penawaran.length - 1) - index].level_penawaran_label}</button></td>
+                            </tr>`
+                    }
+                    list_penawaran += '</table>'
+                    if (daftar_penawaran.length < 1) {
+                        list_penawaran += `<p class='text-muted'>Belum ada penawaran</p>`
+                    }
+                    document.getElementById("list-penawaran").innerHTML = list_penawaran
+                } else {
+                    console.log('Tidak berhasil mengambil postingan')
+                    return
+                }
+            })
+            .catch(async function (error) {
+                console.log(error)
+                return
+            });
     }, [])
+
+    function toBayar(transaksi_id) {
+        localStorage.setItem('transaksi_id',transaksi_id)
+        
+    }
 
     function sleep(ms) {
         return new Promise(
@@ -284,6 +380,34 @@ export const Profile = () => {
         document.getElementById('redaksi-btn').classList.remove("text-muted")
     }
 
+    const toTransaksi = () => {
+        document.getElementById('list-transaksi').classList.remove("d-none")
+        document.getElementById('list-posting').classList.add("d-none")
+        document.getElementById('btn-posting').classList.add("text-muted")
+        document.getElementById('btn-posting').classList.remove("fw-semibold")
+        document.getElementById('btn-transaksi').classList.add("fw-semibold")
+        document.getElementById('btn-transaksi').classList.remove("text-muted")
+    }
+    const toPosting = () => {
+        document.getElementById('list-transaksi').classList.add("d-none")
+        document.getElementById('list-posting').classList.remove("d-none")
+        document.getElementById('btn-posting').classList.remove("text-muted")
+        document.getElementById('btn-posting').classList.add("fw-semibold")
+        document.getElementById('btn-transaksi').classList.remove("fw-semibold")
+        document.getElementById('btn-transaksi').classList.add("text-muted")
+    }
+    const toPenawaran = () => {
+        document.getElementById('list-penawaran').classList.remove("d-none")
+        document.getElementById('list-transaksi').classList.add("d-none")
+        document.getElementById('list-posting').classList.add("d-none")
+        document.getElementById('btn-posting').classList.add("text-muted")
+        document.getElementById('btn-posting').classList.remove("fw-semibold")
+        document.getElementById('btn-transaksi').classList.remove("fw-semibold")
+        document.getElementById('btn-transaksi').classList.add("text-muted")
+        document.getElementById('btn-penawaran').classList.add("fw-semibold")
+        document.getElementById('btn-penawaran').classList.remove("text-muted")
+    }
+
     return (
         <div className='bg-f5'>
             <Navbar />
@@ -314,10 +438,17 @@ export const Profile = () => {
                 {/* POSTINGAN */}
                 <div className='col-12 col-md-7'>
                     <div className='text-center text-md-start d-flex py-1'>
-                        <button className='btn fw-semibold'>Postingan</button>
-                        <button className='btn text-muted'>Insight</button>
+                        <button className='btn fw-semibold' id='btn-posting' onClick={toPosting}>Postingan</button>
+                        <button className='btn text-muted' id='btn-transaksi' onClick={toTransaksi}>Transaksi</button>
+                        <button className='btn text-muted' id='btn-penawaran' onClick={toTransaksi}>Penawaran</button>
                     </div>
                     <hr className='my-2' />
+                    <div id='list-penawaran' className='d-none card my-3 rounded-0 border-0 shadow p-1'>
+
+                    </div>
+                    <div id='list-transaksi' className='d-none'>
+
+                    </div>
                     <div id='list-posting'>
 
                     </div>

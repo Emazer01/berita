@@ -6,7 +6,7 @@ import { useHref, useNavigate } from 'react-router-dom';
 
 export const Bayar = () => {
     const navigate = useNavigate()
-    const [beritaState, setBeritaState] = React.useState({
+    const [transaksiState, setTransaksiState] = React.useState({
         judul: '',
         nama: '',
         deskripsi: '',
@@ -14,132 +14,82 @@ export const Bayar = () => {
         tanggal: '',
         file: '',
     })
-    const [levelState, setLevelState] = React.useState({
-        level_id: 3
-    })
-    const [penawaranState, setPenawaranState] = React.useState({})
 
     React.useEffect(() => {
-        const queryString = window.location.search;
-        console.log(queryString);
-        const urlParams = new URLSearchParams(queryString);
-        const berita_id = urlParams.get('id')
-        console.log(berita_id);
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
+        const transaksi_id = localStorage.getItem('transaksi_id');
+        console.log(transaksi_id)
         const profile_id = Number(localStorage.getItem('profile_id'))
-        function verifwar(id, profile_id, token) {
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/verifwar`, {
-                token: token,
-                id: id,
-                profile_id: profile_id
-            })
-                .then(async function (response) {
-                    if (response.status == 200) {
-                        const level = response.data['0']
-                        console.log(level)
-                        setLevelState(level)
-                    } else {
-                        console.log('Tidak berhasil mengambil postingan')
-                        return
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/viewtransaksi`, {
+            token: token,
+            profile_id: profile_id
+        })
+            .then(async function (response) {
+                if (response.status == 200) {
+                    const daftar_transaksi = response.data
+                    console.log(daftar_transaksi)
+                    var list_transaksi = ''
+                    for (let index = 0; index < daftar_transaksi.length; index++) {
+                        if (daftar_transaksi[index].transaksi_id == transaksi_id) {
+                            setTransaksiState(daftar_transaksi[index])
+                        }
                     }
-                })
-                .catch(async function (error) {
-                    console.log(error)
+                } else {
+                    console.log('Tidak berhasil mengambil postingan')
                     return
-                });
-        }
-        function view(berita_id) {
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/view`, {
-                berita_id: berita_id
+                }
             })
-                .then(async function (response) {
-                    if (response.status == 200) {
-                        const daftar_berita = response.data['0']
-                        console.log(daftar_berita)
-                        setBeritaState(daftar_berita)
-                        if (daftar_berita.profile_id != profile_id) {
-                            /*to permission*/
-                            navigate('../permission')
-                        }
-                    } else {
-                        console.log('Tidak berhasil mengambil postingan')
-                        return
-                    }
-                })
-                .catch(async function (error) {
-                    console.log(error)
-                    return
-                });
-        }
-        function penawarans(berita_id) {
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/penawarans`, {
-                berita_id: berita_id
-            })
-                .then(async function (response) {
-                    if (response.status == 200) {
-                        const daftar_penawaran = response.data
-                        const calculate = () => {
-                            var harga = 0
-                            for (const key in daftar_penawaran) {
-                                if (document.getElementById(`pen${key}`).checked == true) {
-                                    harga += Number(document.getElementById(`pen${key}`).value)
-                                } else {
-                                    harga += 0
-                                }
-                            }
-                            console.log(`Harga = ${harga}`)
-                            document.getElementById('total').innerHTML = harga
-                        }
-                        console.log(daftar_penawaran)
-                        setPenawaranState(daftar_penawaran);
-                        var list = `<tr>
-                                        <th class="fw-semibold px-1">Pilih</th>
-                                        <th class="fw-semibold px-1">Id</th>
-                                        <th class="fw-semibold px-1">Nama</th>
-                                        <th class="fw-semibold px-1">Harga</th>
-                                        <th class="fw-semibold px-1">Deskripsi</th>
-                                    </tr>`
-                        if (daftar_penawaran.length > 0) {
-                            for (const key in daftar_penawaran) {
-                                list += `<tr>
-                                            <td>
-                                                <input class="form-check-input fs-4 rounded-3 border border-tertiary border-2 shadow-sm" type="checkbox" value="${daftar_penawaran[key].harga}" id="pen${key}" name="pen${key}" />
-                                            </td>
-                                            <td>${daftar_penawaran[key].penawaran_id}</td>
-                                            <td>${daftar_penawaran[key].profil_label}</td>
-                                            <td>${daftar_penawaran[key].harga}</td>
-                                            <td>${daftar_penawaran[key].deskripsi}</td>
-                                        </tr>`
-                            }
-                            list += '<br/><br/>'
-                        } else {
-                            list += "<p>Belum ada penawaran</p>"
-                        }
-                        document.getElementById("list-penawaran").innerHTML = list
-                        for (const key in daftar_penawaran) {
-                            document.getElementById(`pen${key}`).onchange = calculate
-                        }
-                    } else {
-                        console.log('Tidak berhasil mengambil postingan')
-                        return
-                    }
-                })
-                .catch(async function (error) {
-                    console.log(error)
-                    return
-                });
-        }
-        verifwar(id, profile_id, token)
-        view(berita_id)
-        penawarans(berita_id)
+            .catch(async function (error) {
+                console.log(error)
+                return
+            });
     }, [])
 
     return (
         <div>
             <Navbar />
             <div className="bg-biru sampul"></div>
-            
+            <div className='row mb-5 mt-minus-150-px' id='editProfile'>
+                <div className="col"></div>
+                <div className='col-10 shadow py-4 bg-white row'>
+                    <div className='col-12 col-md-4 mb-3'>
+                        <div className='bg-white shadow p-0 text-center mx-3'>
+                            <div class="card rounded-0 border-0 p-0 shadow">
+                                <img src={transaksiState.image} class="card-img-top rounded-0" alt="..." />
+                                <div class="card-body d-flex flex-column p-0">
+                                    <div className="p-3">
+                                        <h5 class="card-title">{transaksiState.judul}</h5>
+                                        <p class="card-text"><small class="text-muted">{transaksiState.tanggal.substring(0, 10)} | </small><small className="text-muted">{transaksiState.nama}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-8 p-4">
+                        <h3 className="fs-1">Bayar</h3>
+                        <div className="col-12 col-md-6">
+                            <table className="my-4 w-100">
+                                <tr>
+                                    <th>Nominal</th>
+                                    <td className="text-end py-2">{transaksiState.harga_total}</td>
+                                </tr>
+                                <tr>
+                                    <th>Metode</th>
+                                    <td className="text-end py-2">Transfer</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td className="text-end py-2">{transaksiState.status_transaksi_label}</td>
+                                </tr>
+                            </table>
+                            <button class='btn-biru fs-4 p-2 w-100'>Sudah Bayar</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="col"></div>
+            </div>
+
             <Footer />
         </div>
     )
