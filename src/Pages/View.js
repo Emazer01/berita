@@ -77,7 +77,6 @@ export const View = () => {
                         }
                     } else {
                         document.getElementById("pengajuan").classList.remove("d-none")
-                        navigate('../login')
                     }
                     if (daftar_berita.level_berita_id == 2){
                         document.getElementById("input_harga").disabled = true;
