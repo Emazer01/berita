@@ -14,27 +14,8 @@ export const Main = () => {
                 if (response.status == 200) {
                     const daftar_berita = response.data
                     console.log(daftar_berita)
-                    var listGrid = ''
                     var listRow = ''
                     for (let index = 0; index < daftar_berita.length; index++) {
-                        listGrid +=
-                            `<div class="col-12 col-md-6 my-2 px-3">
-                                <div class="card rounded-0 border-0 p-0 shadow h-100">
-                                    <img src=${daftar_berita[index].image} class="card-img-top rounded-0" alt="..." />
-                                    <div class="card-body d-flex flex-column p-0">
-                                        <div class="p-3">
-                                            <h5 class="card-title">${daftar_berita[index].judul}</h5>
-                                            <p class="card-text">${daftar_berita[index].deskripsi.substring(0, 200)}...</p>
-                                            <p class="card-text"><small class="text-muted">${daftar_berita[index].tanggal.substring(0, 10)} | </small><small class="text-muted">${daftar_berita[index].nama}</small></p>
-                                        </div>
-                                        <div class="mt-auto border-top d-flex">
-                                            <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i> Rp <span>${daftar_berita[index].harga}</span></span>
-                                            <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><span>1</span></span>
-                                            <a href="/view/?id=${daftar_berita[index].berita_id}" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`
                         listRow +=
                             `<div class="card my-3 rounded-0 border-0 shadow">
                                 <div class="row g-0">
@@ -52,10 +33,8 @@ export const Main = () => {
                             </div>`
                     }
                     if (daftar_berita.length < 1) {
-                        listGrid += `<p class='text-muted'>Belum ada Postingan</p>`
                         listRow += `<p class='text-muted'>Belum ada Postingan</p>`
                     }
-                    document.getElementById("list-grid").innerHTML = listGrid
                     document.getElementById("row-view").innerHTML = listRow
                 } else {
                     console.log('Tidak berhasil mengambil postingan')
@@ -101,148 +80,64 @@ export const Main = () => {
                     <div id="row-view">
                         <div class="card my-3 rounded-0 border-0 shadow">
                             <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src={jumbo1} class="h-100 img-fluid object-fit-cover" alt="..." />
-                                </div>
-                                <div class="col-md-8 d-flex flex-column">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
+                                <div class="col-md-12 d-flex flex-column">
+                                    <div class="card-body p-2">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6 placeholder-lg bg-dark"></span>
+                                        </h5>
                                     </div>
-                                    <div className="border-top d-flex">
-                                        <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>100.000</span></small></span>
-                                        <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><small><span>1</span></small></span>
-                                        <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
+                                    <div class="border-top d-flex">
+                                        <p class="card-text m-1 mx-2 w-25"><small class="text-muted placeholder-glow"><span class="placeholder col-12 bg-dark"></span></small></p>
+                                        <span class="card-text my-1 text-danger ms-auto mx-2 w-25"><small className="placeholder-glow w-25"><span class="placeholder col-12 bg-danger"></span></small></span>
+                                        <a href="" class="btn rounded-0 btn-biru col-1"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card my-3 rounded-0 border-0 shadow">
                             <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src={jumbo1} class="h-100 img-fluid object-fit-cover" alt="..." />
-                                </div>
-                                <div class="col-md-8 d-flex flex-column">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
+                                <div class="col-md-12 d-flex flex-column">
+                                    <div class="card-body p-2">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6 placeholder-lg bg-dark"></span>
+                                        </h5>
                                     </div>
-                                    <div className="border-top d-flex">
-                                        <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>100.000</span></small></span>
-                                        <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><small><span>1</span></small></span>
-                                        <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
+                                    <div class="border-top d-flex">
+                                        <p class="card-text m-1 mx-2 w-25"><small class="text-muted placeholder-glow"><span class="placeholder col-12 bg-dark"></span></small></p>
+                                        <span class="card-text my-1 text-danger ms-auto mx-2 w-25"><small className="placeholder-glow w-25"><span class="placeholder col-12 bg-danger"></span></small></span>
+                                        <a href="" class="btn rounded-0 btn-biru col-1"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card my-3 rounded-0 border-0 shadow">
                             <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src={jumbo1} class="h-100 img-fluid object-fit-cover" alt="..." />
-                                </div>
-                                <div class="col-md-8 d-flex flex-column">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
+                                <div class="col-md-12 d-flex flex-column">
+                                    <div class="card-body p-2">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6 placeholder-lg bg-dark"></span>
+                                        </h5>
                                     </div>
-                                    <div className="border-top d-flex">
-                                        <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>100.000</span></small></span>
-                                        <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><small><span>1</span></small></span>
-                                        <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
+                                    <div class="border-top d-flex">
+                                        <p class="card-text m-1 mx-2 w-25"><small class="text-muted placeholder-glow"><span class="placeholder col-12 bg-dark"></span></small></p>
+                                        <span class="card-text my-1 text-danger ms-auto mx-2 w-25"><small className="placeholder-glow w-25"><span class="placeholder col-12 bg-danger"></span></small></span>
+                                        <a href="" class="btn rounded-0 btn-biru col-1"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card my-3 rounded-0 border-0 shadow">
                             <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src={jumbo1} class="h-100 img-fluid object-fit-cover" alt="..." />
-                                </div>
-                                <div class="col-md-8 d-flex flex-column">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
+                                <div class="col-md-12 d-flex flex-column">
+                                    <div class="card-body p-2">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6 placeholder-lg bg-dark"></span>
+                                        </h5>
                                     </div>
-                                    <div className="border-top d-flex">
-                                        <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>100.000</span></small></span>
-                                        <span class="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><small><span>1</span></small></span>
-                                        <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="grid-view" className="d-none">
-                        <div className="mt-2 row" id='list-grid'>
-                            <div className="col-12 col-md-6 my-2 px-3">
-                                <div class="card rounded-0 border-0 p-0 shadow">
-                                    <img src={jumbo1} class="card-img-top rounded-0" alt="..." />
-                                    <div class="card-body d-flex flex-column p-0">
-                                        <div className="p-3">
-                                            <h5 class="card-title">John Lewis, civil rights giant, crosses infamous Selma bridge one final time</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
-                                        </div>
-                                        <div className="mt-auto border-top d-flex">
-                                            <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i> Rp <span>100.000</span></span>
-                                            <span className="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><span>1</span></span>
-                                            <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 my-2 px-3">
-                                <div class="card rounded-0 border-0 p-0 shadow">
-                                    <img src={jumbo1} class="card-img-top rounded-0" alt="..." />
-                                    <div class="card-body d-flex flex-column p-0">
-                                        <div className="p-3">
-                                            <h5 class="card-title">John Lewis, civil rights giant, crosses infamous Selma bridge one final time</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
-                                        </div>
-                                        <div className="mt-auto border-top d-flex">
-                                            <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i> Rp <span>100.000</span></span>
-                                            <span className="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><span>1</span></span>
-                                            <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 my-2 px-3">
-                                <div class="card rounded-0 border-0 p-0 shadow">
-                                    <img src={jumbo1} class="card-img-top rounded-0" alt="..." />
-                                    <div class="card-body d-flex flex-column p-0">
-                                        <div className="p-3">
-                                            <h5 class="card-title">John Lewis, civil rights giant, crosses infamous Selma bridge one final time</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
-                                        </div>
-                                        <div className="mt-auto border-top d-flex">
-                                            <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i> Rp <span>100.000</span></span>
-                                            <span className="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><span>1</span></span>
-                                            <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 my-2 px-3">
-                                <div class="card rounded-0 border-0 p-0 shadow">
-                                    <img src={jumbo1} class="card-img-top rounded-0" alt="..." />
-                                    <div class="card-body d-flex flex-column p-0">
-                                        <div className="p-3">
-                                            <h5 class="card-title">John Lewis, civil rights giant, crosses infamous Selma bridge one final time</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <p class="card-text"><small class="text-muted">3 mins ago | </small><small className="text-muted">Lucy Hiddleston</small></p>
-                                        </div>
-                                        <div className="mt-auto border-top d-flex">
-                                            <span class="card-text ms-2 my-1 text-danger"><i class="bi bi-eject-fill mx-2"></i> Rp <span>100.000</span></span>
-                                            <span className="card-text ms-2 my-1"><i class="bi bi-file-earmark-plus-fill mx-2"></i><span>1</span></span>
-                                            <a href="#" class="btn rounded-0 btn-biru ms-auto">LIHAT<i class="bi bi-caret-right-fill"></i></a>
-                                        </div>
+                                    <div class="border-top d-flex">
+                                        <p class="card-text m-1 mx-2 w-25"><small class="text-muted placeholder-glow"><span class="placeholder col-12 bg-dark"></span></small></p>
+                                        <span class="card-text my-1 text-danger ms-auto mx-2 w-25"><small className="placeholder-glow w-25"><span class="placeholder col-12 bg-danger"></span></small></span>
+                                        <a href="" class="btn rounded-0 btn-biru col-1"></a>
                                     </div>
                                 </div>
                             </div>
