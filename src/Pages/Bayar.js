@@ -18,7 +18,10 @@ export const Bayar = () => {
     React.useEffect(() => {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
-        const transaksi_id = localStorage.getItem('transaksi_id');
+        const queryString = window.location.search;
+        console.log(queryString);
+        const urlParams = new URLSearchParams(queryString);
+        const transaksi_id = urlParams.get('id')
         console.log(transaksi_id)
         const profile_id = Number(localStorage.getItem('profile_id'))
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/viewtransaksi`, {

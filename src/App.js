@@ -12,6 +12,7 @@ import { View } from './Pages/View';
 import { Cekout } from './Pages/Cekout';
 import { Permission } from './Pages/Permission';
 import { Bayar } from './Pages/Bayar';
+import { Ketentuan } from './Pages/Ketentuan';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/cekout" element={<Cekout />}></Route>
         <Route path="/bayar" element={<Bayar />}></Route>
         <Route path="/permission" element={<Permission />}></Route>
+        <Route path="/ketentuan" element={<Ketentuan />}></Route>
       </Routes>
     </BrowserRouter>
   );

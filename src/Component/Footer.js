@@ -9,7 +9,7 @@ export const Footer = () => {
             </div>
             <div className="col-12 col-md-4 col-lg-3 text-center my-3 text-md-end text-lg-start">
                 <a href="#" className="text-decoration-none text-white"><p>Kebijakan Privasi</p></a>
-                <a href="#" className="text-decoration-none text-white"><p>Ketentuan Layanan</p></a>
+                <a href="/ketentuan" className="text-decoration-none text-white"><p>Ketentuan Layanan</p></a>
                 <a href="#" className="text-decoration-none text-white"><p>JUCO NEWS.inc</p></a>
             </div>
             <div className="col-12 col-lg-4 my-3 border-top pt-3">
@@ -22,11 +22,8 @@ export const Footer = () => {
                 <div className="d-flex justify-content-center justify-content-lg-end text-center my-2">
                     <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-instagram"></i></a>
                     <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-twitter"></i></a>
-                    <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-facebook"></i></a>
                     <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-reddit"></i></a>
                     <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-line"></i></a>
-                    <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-linkedin"></i></a>
                     <a href="#" className="text-decoration-none text-white fs-4 ms-2"><i class="bi bi-telegram"></i></a>
                 </div>
             </div>

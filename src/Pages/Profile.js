@@ -66,6 +66,7 @@ export const Profile = () => {
                             toPenawaran()
                         } else if (response.data.profile.level_akun_label == "Narasumber") {
                             document.getElementById('btn-penawaran').classList.add('d-none')
+                            document.getElementById('btn-proses').classList.add('d-none')
                         }
                     } else {
                         navigate('../login')
@@ -144,7 +145,7 @@ export const Profile = () => {
                                                 <p class="card-text m-1 mx-2"><small class="text-muted">${daftar_transaksi[(daftar_transaksi.length - 1) - index].tanggal.substring(0, 10)}</small></p>
                                                 <p class='m-1'><button class='btn-biru rounded-pill p-0 px-3'><small>${daftar_transaksi[(daftar_transaksi.length - 1) - index].status_transaksi_label}</small></button></p>
                                                 <span class="card-text mx-2 my-1 text-danger ms-auto"><i class="bi bi-eject-fill mx-2"></i><small>Rp <span>${daftar_transaksi[(daftar_transaksi.length - 1) - index].harga_total}</span></small></span>
-                                                <a id="btn-trans-${daftar_transaksi[(daftar_transaksi.length - 1) - index].transaksi_id}" class="btn rounded-0 btn-biru">LIHAT<i class="bi bi-caret-right-fill"></i></a>
+                                                <a href='/bayar/?id=${daftar_transaksi[(daftar_transaksi.length - 1) - index].transaksi_id}' id="btn-trans-${daftar_transaksi[(daftar_transaksi.length - 1) - index].transaksi_id}" class="btn rounded-0 btn-biru">LIHAT<i class="bi bi-caret-right-fill"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -154,9 +155,6 @@ export const Profile = () => {
                         list_transaksi += `<p class='text-muted'>Belum ada Transaksi</p>`
                     }
                     document.getElementById("list-transaksi").innerHTML = list_transaksi
-                    for (let index = 0; index < daftar_transaksi.length; index++) {
-                        document.getElementById(`btn-trans-${daftar_transaksi[index].transaksi_id}`).onclick = toBayar(daftar_transaksi[index].transaksi_id)
-                    }
                 } else {
                     console.log('Tidak berhasil mengambil postingan')
                     return
@@ -182,7 +180,7 @@ export const Profile = () => {
                                                 <th>Harga</th>
                                                 <th>Status</th>
                                             </tr>`
-                    const warna = {'Pending':'warning','Approve':'success','Reject':'danger'}
+                    const warna = { 'Pending': 'warning', 'Approve': 'success', 'Reject': 'danger' }
                     for (let index = 0; index < daftar_penawaran.length; index++) {
                         list_penawaran +=
                             `<tr>
@@ -207,12 +205,53 @@ export const Profile = () => {
                 console.log(error)
                 return
             });
-    }, [])
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/myproses`, {
+            token: token,
+            profile_id: profile_id
+        })
+            .then(async function (response) {
+                if (response.status == 200) {
+                    const daftar_proses = response.data
+                    console.log(daftar_proses)
+                    var list_proses = `<table class="text-center">
+                                                <tr class="text-center border-bottom border-dark">
+                                                    <th class="py-2">ID</th>
+                                                    <th>Judul</th>
+                                                    <th>Status</th>
+                                                    <th>Link</th>
+                                                    <th>Action</th>
+                                                </tr>`
+                    const warna = { 'Menunggu pembayaran': 'danger', 'Proses': 'warning', 'Selesai': 'success' }
+                    for (let index = 0; index < daftar_proses.length; index++) {
+                        list_proses +=
+                            `<tr>
+                                    <td class="text-center">${daftar_proses[(daftar_proses.length - 1) - index].proses_id}</td>
+                                    <td class="text-center">${daftar_proses[(daftar_proses.length - 1) - index].judul}</td>
+                                    <td><button class="btn btn-${warna[daftar_proses[(daftar_proses.length - 1) - index].status_proses_label]} py-0 rounded-pill">${daftar_proses[(daftar_proses.length - 1) - index].status_proses_label}</button></td>
+                                    <td><input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">${daftar_proses[(daftar_proses.length - 1) - index].link}</td>
+                                    <td><button class="btn btn-primary py-0 rounded-pill">Submit</button></td>
+                                </tr>`
+                        if (daftar_proses[(daftar_proses.length - 1) - index].status_proses_label == 'Proses') {
+                            
+                        } else {
 
-    function toBayar(transaksi_id) {
-        localStorage.setItem('transaksi_id',transaksi_id)
-        
-    }
+                        }
+                    }
+                    list_proses += '</table>'
+                    if (daftar_proses.length < 1) {
+                        list_proses += `<p class='text-muted'>Belum ada proses</p>`
+                    }
+                    document.getElementById("list-proses").innerHTML = list_proses
+                } else {
+                    console.log('Tidak berhasil mengambil postingan')
+                    return
+                }
+            })
+            .catch(async function (error) {
+                console.log(error)
+                return
+            });
+    }, [])
 
     function sleep(ms) {
         return new Promise(
@@ -398,14 +437,21 @@ export const Profile = () => {
     }
     const toPenawaran = () => {
         document.getElementById('list-penawaran').classList.remove("d-none")
-        document.getElementById('list-transaksi').classList.add("d-none")
+        document.getElementById('list-proses').classList.add("d-none")
         document.getElementById('list-posting').classList.add("d-none")
-        document.getElementById('btn-posting').classList.add("text-muted")
-        document.getElementById('btn-posting').classList.remove("fw-semibold")
-        document.getElementById('btn-transaksi').classList.remove("fw-semibold")
-        document.getElementById('btn-transaksi').classList.add("text-muted")
+        document.getElementById('btn-proses').classList.remove("fw-semibold")
+        document.getElementById('btn-proses').classList.add("text-muted")
         document.getElementById('btn-penawaran').classList.add("fw-semibold")
         document.getElementById('btn-penawaran').classList.remove("text-muted")
+    }
+    const toProses = () => {
+        document.getElementById('list-penawaran').classList.add("d-none")
+        document.getElementById('list-proses').classList.remove("d-none")
+        document.getElementById('list-posting').classList.add("d-none")
+        document.getElementById('btn-penawaran').classList.remove("fw-semibold")
+        document.getElementById('btn-penawaran').classList.add("text-muted")
+        document.getElementById('btn-proses').classList.add("fw-semibold")
+        document.getElementById('btn-proses').classList.remove("text-muted")
     }
 
     return (
@@ -440,16 +486,20 @@ export const Profile = () => {
                     <div className='text-center text-md-start d-flex py-1'>
                         <button className='btn fw-semibold' id='btn-posting' onClick={toPosting}>Postingan</button>
                         <button className='btn text-muted' id='btn-transaksi' onClick={toTransaksi}>Transaksi</button>
-                        <button className='btn text-muted' id='btn-penawaran' onClick={toTransaksi}>Penawaran</button>
+                        <button className='btn text-muted' id='btn-penawaran' onClick={toPenawaran}>Penawaran</button>
+                        <button className='btn text-muted' id='btn-proses' onClick={toProses}>Proses</button>
                     </div>
                     <hr className='my-2' />
                     <div id='list-penawaran' className='d-none card my-3 rounded-0 border-0 shadow p-1'>
 
                     </div>
+                    <div id='list-proses' className='d-none card my-3 rounded-0 border-0 shadow p-1'>
+
+                    </div>
                     <div id='list-transaksi' className='d-none'>
 
                     </div>
-                    <div id='list-posting'>
+                    <div id='list-posting' SclassName='d-none'>
 
                     </div>
                 </div>
