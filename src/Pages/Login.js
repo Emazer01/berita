@@ -82,11 +82,11 @@ export const Login = () => {
                         </div>
                         <form onSubmit={handleSubmit} className="dark mb-5">
                             <div>
-                                <label for="email" className="font-nunito fw-bold">Email</label>
+                                <label for="email" className="font-nunito fw-bold">Email<span className="text-danger">*</span></label>
                                 <input type="email" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="email" placeholder="Enter email" name="email" />
                             </div>
                             <div class="my-4">
-                                <label for="pwd" className="font-nunito fw-bold">Password</label>
+                                <label for="pwd" className="font-nunito fw-bold">Password<span className="text-danger">*</span></label>
                                 <input type="password" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="pwd" placeholder="Enter password" name="pswd" />
                             </div>
                             <button type="submit" class="btn btn-biru my-3 w-100 rounded-3 shadow">Masuk</button>

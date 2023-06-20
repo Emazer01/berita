@@ -100,15 +100,15 @@ export const Register = () => {
                         </div>
                         <form onSubmit={handleSubmit} className="dark mb-5">
                             <div>
-                                <label for="username" className="font-nunito fw-bold">Username</label><br/><small>(min 6 char)</small>
+                                <label for="username" className="font-nunito fw-bold">Username<span className="text-danger">*</span></label><br/><small>(min 6 char)</small>
                                 <input type="text" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="username" placeholder="Enter username" name="username" />
                             </div>
                             <div class="my-3">
-                                <label for="email" className="font-nunito fw-bold">Email</label>
+                                <label for="email" className="font-nunito fw-bold">Email<span className="text-danger">*</span></label>
                                 <input type="email" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="email" placeholder="Enter email" name="email" />
                             </div>
                             <div class="my-3">
-                                <label for="pwd" className="font-nunito fw-bold">Password</label><br/><small>(min 8 char, must include Uppercase & Number/Symbol)</small>
+                                <label for="pwd" className="font-nunito fw-bold">Password<span className="text-danger">*</span></label><br/><small>(min 8 char, must include Uppercase & Number/Symbol)</small>
                                 <input type="password" onChange={() => { fresh() }} class="form-control rounded-3 border border-tertiary border-2 shadow-sm" id="pwd" placeholder="Enter password" name="pswd" />
                             </div>
                             <div class="form-check px-5">
